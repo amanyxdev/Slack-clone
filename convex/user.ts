@@ -1,6 +1,5 @@
 import { auth } from "./auth";
 import { query } from "./_generated/server"
-import { use } from "react";
 
 
 export const current = query({
