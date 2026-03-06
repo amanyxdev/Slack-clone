@@ -27,6 +27,9 @@ export const CreateWorkspaceModal = () => {
                 toast.success("workspace created")
                 router.push(`/workspace/${id}`)
                 handleClose()
+            },
+            onError() {
+                toast.error("Failed to create workspace")
             }
         })
     };
