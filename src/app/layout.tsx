@@ -5,6 +5,7 @@ import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 // import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import { Providers } from "@/components/providers";
 import { Modals } from "@/components/modals";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
                 >
                     <Providers>
                         <Modals />
+                        <Toaster />
 
                         {children}
                     </Providers>
