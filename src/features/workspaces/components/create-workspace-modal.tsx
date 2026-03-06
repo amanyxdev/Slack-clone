@@ -14,10 +14,6 @@ export const CreateWorkspaceModal = () => {
 
     const { mutate, isPending } = useCreateWorkspace()
 
-    // const handleOpenChange = (nextOpen: boolean) => {
-    //     setOpen(nextOpen);
-    //     if (!nextOpen) setName("");
-    // }
     const handleClose = () => {
         setOpen(false)
         setName("")
