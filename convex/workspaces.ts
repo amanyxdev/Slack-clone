@@ -30,7 +30,16 @@ export const create = mutation({
 export const get = query({
     args: {},
     handler: async (ctx) => {
-        return await ctx.db.query("workspaces").collect()
+        const userId = await auth.getUserId(ctx)
+
+        if (!userId) {
+            throw new Error("Unauthorized")
+        }
+
+        return await ctx.db
+            .query("workspaces")
+            .filter((q) => q.eq(q.field("userId"), userId))
+            .collect()
     }
 })
 
@@ -41,10 +50,15 @@ export const getById = query({
     handler: async (ctx, args) => {
         const userId = await auth.getUserId(ctx)
 
-        if (!userId) {
-            throw new Error("Unauthorized")
-        }
+        if (!userId) return null;
 
-        return await ctx.db.get(args.id);
+        // return await ctx.db.get(args.id);
+        const workspace = await ctx.db.get(args.id);
+
+        if (!workspace) return null;
+
+        if (workspace.userId !== userId) return null;
+
+        return workspace;
     }
 })

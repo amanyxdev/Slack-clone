@@ -17,6 +17,40 @@ import { Check, ChevronsUpDown, Loader2, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+
+const WorkspaceAvatarIcon = ({ className }: { className?: string }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        className={className}
+        aria-hidden="true"
+    >
+        <circle
+            cx="12"
+            cy="8"
+            r="3"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="square"
+            strokeLinejoin="miter"
+            strokeMiterlimit="3"
+        />
+        <path
+            d="M6 20V16.5L9 14.5H15L18 16.5V20Z"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="square"
+            strokeLinejoin="miter"
+            strokeMiterlimit="3"
+            fill="none"
+        />
+    </svg>
+);
+
+
 export const WorkspaceSwitcher = () => {
     const router = useRouter();
     const workspaceId = useWorkspaceId();
@@ -38,37 +72,6 @@ export const WorkspaceSwitcher = () => {
         router.push(`/workspace/${id}`);
     };
 
-    const WorkspaceAvatarIcon = ({ className }: { className?: string }) => (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            className={className}
-            aria-hidden="true"
-        >
-            <circle
-                cx="12"
-                cy="8"
-                r="3"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="square"
-                strokeLinejoin="miter"
-                strokeMiterlimit="3"
-            />
-            <path
-                d="M6 20V16.5L9 14.5H15L18 16.5V20Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="square"
-                strokeLinejoin="miter"
-                strokeMiterlimit="3"
-                fill="none"
-            />
-        </svg>
-    );
 
     return (
         <DropdownMenu>
@@ -119,10 +122,10 @@ export const WorkspaceSwitcher = () => {
                         onClick={() => handleSwitch(workspace._id)}
                         disabled={isSwitching}
                     >
-                            <div className="flex min-w-0 items-center gap-2">
-							<div className="bg-muted text-muted-foreground flex size-7 shrink-0 items-center justify-center rounded-md">
-								<WorkspaceAvatarIcon className="size-4" />
-							</div>
+                        <div className="flex min-w-0 items-center gap-2">
+                            <div className="bg-muted text-muted-foreground flex size-7 shrink-0 items-center justify-center rounded-md">
+                                <WorkspaceAvatarIcon className="size-4" />
+                            </div>
                             <div className="truncate">{workspace.name}</div>
                         </div>
                         <ChevronsUpDown className="text-muted-foreground size-4" />

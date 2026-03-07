@@ -11,5 +11,5 @@ export const useGetWorkspace = ({ id }: UseGetWorkspaceProps) => {
     const data = useQuery(api.workspaces.getById, { id })
     const isLoading = data === undefined;
 
-    return { data, isLoading }
+    return { data, isLoading, isMissing: !isLoading && data === null }
 }
