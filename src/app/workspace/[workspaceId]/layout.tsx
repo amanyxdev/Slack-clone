@@ -19,8 +19,8 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
                     orientation="horizontal"
                 >
                     <ResizablePanel
-                        defaultSize={200}
-                        minSize={150}
+                        defaultSize={300}
+                        minSize={250}
                         className="bg-[#5E2C5F]"
                     >
                         <div>
