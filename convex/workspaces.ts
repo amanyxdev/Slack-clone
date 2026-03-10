@@ -113,7 +113,9 @@ export const remove = mutation({
     handler: async (ctx, args) => {
         const userId = await auth.getUserId(ctx)
 
-        if (!userId) return null;
+        if (!userId) {
+            throw new Error("Unauthorized")
+        }
 
         const member = await ctx.db
             .query("members")
@@ -122,6 +124,15 @@ export const remove = mutation({
 
         if (!member || member.role !== "admin") {
             throw new Error("Unauthorized");
+        }
+
+        const members = await ctx.db
+            .query("members")
+            .withIndex("by_workspace_id", (q) => q.eq("workspaceId", args.id))
+            .collect()
+
+        for (const membership of members) {
+            await ctx.db.delete(membership._id)
         }
 
         await ctx.db.delete(args.id);
@@ -152,8 +163,13 @@ export const update = mutation({
             throw new Error("Unauthorized");
         }
 
+        const normalizedName = args.name.trim()
+        if (!normalizedName) {
+            throw new Error("Invalid workspace name")
+        }
+
         await ctx.db.patch(args.id, {
-            name: args.name,
+            name: normalizedName,
         });
 
         return args.id;

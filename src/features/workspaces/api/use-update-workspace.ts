@@ -42,16 +42,19 @@ export const useUpdateWorkspace = () => {
             setStatus("pending")
 
             const response = await mutation(values)
+            setData(response)
+            setError(null)
+            setStatus("success")
             options?.onSuccess?.(response)
             return response;
         } catch (error) {
+            setError(error as Error)
             setStatus("error")
             options?.onError?.(error as Error)
             if (options?.throwError) {
                 throw error;
             }
         } finally {
-            setStatus("settled")
             options?.onSettled?.()
         }
     }, [mutation])
