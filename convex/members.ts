@@ -32,16 +32,21 @@ export const get = query({
             .withIndex("by_workspace_id", (q) => q.eq("workspaceId", args.workspaceId))
             .collect()
 
-        const members = []
+        const members = [];
 
-        for (const member of data) {
-            const user = await populateUser(ctx, member.userId)
+        const populatedMembers = await Promise.all(
+            data.map(async (item) => {
+                const user = await populateUser(ctx, item.userId);
+                return { item, user };
+            })
+        );
 
+        for (const { item, user } of populatedMembers) {
             if (user) {
                 members.push({
-                    ...member,
+                    ...item,
                     user,
-                })
+                });
             }
         }
 

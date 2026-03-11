@@ -28,6 +28,10 @@ export const create = mutation({
             .replace(/\s+/g, "-")
             .toLowerCase();
 
+        if (parsedName.replace(/-/g, "") === "") {
+            throw new Error("Invalid channel name");
+        }
+
         const channelId = await ctx.db.insert("channels", {
             name: parsedName,
             workspaceId: args.workspaceId,

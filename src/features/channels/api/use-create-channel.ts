@@ -18,18 +18,12 @@ export const useCreateChannel = () => {
 
     const [data, setData] = useState<ResponseType>(null)
     const [error, setError] = useState<Error | null>(null)
-    const [status, setStatus] = useState<"success" | "error" | "settled" | "pending" | null>(null)
-
-
-    // const [isPending, setIsPending] = useState(false)
-    // const [isSuccess, setIsSuccess] = useState(false)
-    // const [isError, setIsError] = useState(false)
-    // const [isSettled, setIsSettled] = useState(false)
+    const [status, setStatus] = useState<"success" | "error" | "pending" | null>(null)
+    const [isSettled, setIsSettled] = useState(false)
 
     const isPending = useMemo(() => status === "pending", [status])
     const isSuccess = useMemo(() => status === "success", [status])
     const isError = useMemo(() => status === "error", [status])
-    const isSettled = useMemo(() => status === "settled", [status])
 
 
     const mutation = useMutation(api.channels.create)
@@ -40,9 +34,12 @@ export const useCreateChannel = () => {
             setData(null)
             setError(null)
             setStatus("pending")
+            setIsSettled(false)
 
             const response = await mutation(values)
             options?.onSuccess?.(response)
+            setData(response)
+            setStatus("success")
             return response;
         } catch (error) {
             setStatus("error")
@@ -51,7 +48,7 @@ export const useCreateChannel = () => {
                 throw error;
             }
         } finally {
-            setStatus("settled")
+            setIsSettled(true)
             options?.onSettled?.()
         }
     }, [mutation])
