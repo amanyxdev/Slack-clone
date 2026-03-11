@@ -7,19 +7,17 @@ import Link from "next/link"
 import { IconType } from "react-icons"
 
 
-const siderbarItemVariants = cva(
-    "flex items-center gap-1.5 justify-start font-normal h-7 px-[18px] text-sm overflow-hidden",
-    {
-        variants: {
-            variant: {
-                default: "text-[#f9edff]",
-                active: "text-[#481349] bg-white/90 hover:bg-white/90",
-            }
-        },
-        defaultVariants: {
-            variant: "default"
+const siderbarItemVariants = cva("flex items-center gap-1.5 justify-start font-normal h-7 px-[18px] text-sm overflow-hidden", {
+    variants: {
+        variant: {
+            default: "text-[#f9edff]",
+            active: "text-[#481349] bg-white/90 hover:bg-white/90",
         }
+    },
+    defaultVariants: {
+        variant: "default"
     }
+}
 )
 
 interface SidebarItemProps {

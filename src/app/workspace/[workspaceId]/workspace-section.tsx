@@ -48,7 +48,7 @@ export const WorkspaceSection = ({ children, label, hint, onNew }: WorkspaceSect
                     </Hint>
                 )}
             </div>
-            {on && children}
+            {on && <div className="flex flex-col">{children}</div>}
         </div>
     )
 }

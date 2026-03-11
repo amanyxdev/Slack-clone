@@ -6,14 +6,20 @@ import { WorkspaceHeader } from "./workspace-header"
 import { SidebarItem } from "./sidebar-item"
 import { useGetChannels } from "@/features/channels/api/use-get-channels"
 import { WorkspaceSection } from "./workspace-section"
+import { useGetMember } from "@/features/members/api/use-get-member"
+import { UserItem } from "./user-item"
+import { useCreateChannelModal } from "@/features/channels/store/use-create-channel-modal"
 
 export const WorkspaceSidebar = () => {
 
     const WorkspaceId = useWorkspaceId();
 
+    const [_open, setOpen] = useCreateChannelModal();
+
     const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: WorkspaceId });
     const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId: WorkspaceId });
     const { data: channels, isLoading: channelsLoading } = useGetChannels({ workspaceId: WorkspaceId });
+    const { data: members, isLoading: membersLoading } = useGetMember({ workspaceId: WorkspaceId });
 
     if (workspaceLoading || memberLoading) {
         return (
@@ -53,7 +59,7 @@ export const WorkspaceSidebar = () => {
             <WorkspaceSection
                 label="Channels"
                 hint="New channel"
-                onNew={() => { }}
+                onNew={member.role === "admin" ? () => { setOpen(true) } : undefined}
             >
                 {
                     channels?.map((item) => (
@@ -65,6 +71,22 @@ export const WorkspaceSidebar = () => {
                         />
                     ))
                 }
+            </WorkspaceSection>
+            <WorkspaceSection
+                label="Direct Messages"
+                hint="New direct message"
+                onNew={() => { }}
+            >
+
+                {members?.map((item) => (
+                    <UserItem
+                        key={item._id}
+                        id={item._id}
+                        label={item.user.name}
+                        image={item.user.image}
+
+                    />
+                ))}
             </WorkspaceSection>
         </div>
     )
