@@ -35,7 +35,8 @@ export const InviteModal = ({ open, setOpen, name, joinCode }: InviteModalProps)
     })
 
     const handleCopy = () => {
-        const inviteLink = `${window.location.origin}/join/${workspaceId}/${joinCode}`
+        const inviteLink = `${window.location.origin}/join/${workspaceId}`
+
         navigator.clipboard
             .writeText(inviteLink)
             .then(() => toast.success("Copied to clipboard"))
