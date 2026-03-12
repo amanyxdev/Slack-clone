@@ -55,7 +55,6 @@ export const InviteModal = ({ open, setOpen, name, joinCode }: InviteModalProps)
             <Dialog open={open} onOpenChange={setOpen}>
 
                 <DialogContent>
-                    <ConfirmDialog />
                     <DialogHeader>
                         <DialogTitle>Invite people to {name}</DialogTitle>
                         <DialogDescription>
