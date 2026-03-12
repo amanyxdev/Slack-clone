@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle
+} from "@/components/ui/dialog";
 import { useNewJoinCode } from "@/features/workspaces/api/use-new-join-code";
 import { useConfirm } from "@/hook/use-confirm";
 import { useWorkspaceId } from "@/hook/use-workspace-id";
@@ -28,7 +35,7 @@ export const InviteModal = ({ open, setOpen, name, joinCode }: InviteModalProps)
     })
 
     const handleCopy = () => {
-        const inviteLink = `${window.location.origin}/join/${workspaceId}`
+        const inviteLink = `${window.location.origin}/join/${workspaceId}/${joinCode}`
         navigator.clipboard
             .writeText(inviteLink)
             .then(() => toast.success("Copied to clipboard"))
