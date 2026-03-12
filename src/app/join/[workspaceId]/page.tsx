@@ -29,7 +29,8 @@ const JoinPage = () => {
         }
     }, [isMember, router, workspaceId])
 
-    const handeleComplete = (value: string) => {
+    const handleComplete = (value: string) => {
+        if (isPending) return;
         mutate({
             workspaceId, joinCode: value
         },
@@ -71,7 +72,7 @@ const JoinPage = () => {
                     </p>
                 </div>
                 <VerificationInput
-                    onComplete={handeleComplete}
+                    onComplete={handleComplete}
                     length={6}
                     classNames={{
                         container: cn("flex gap-x-2", isPending && "opacity-50 cursor-not-allowed"),
