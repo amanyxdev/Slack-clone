@@ -4,7 +4,7 @@ import {
 
 
 const isPublicPage = createRouteMatcher([
-    "/auth"
+    "/auth",
 ])
 
 export default convexAuthNextjsMiddleware(async (request) => {

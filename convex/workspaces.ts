@@ -238,12 +238,12 @@ export const join = mutation({
         const existingMember = await ctx.db
             .query("members")
             .withIndex("by_workspace_id_user_id", (q) =>
-                q.eq("workspaceId", args.workspaceId).eq("userId", userId)
+                q.eq("workspaceId", args.workspaceId).eq("userId", userId),
             )
             .unique();
 
         if (existingMember) {
-            throw new Error("Already a member of this workspace");
+            throw new Error("You are already a member of this workspace");
         }
 
         await ctx.db.insert("members", {
@@ -252,9 +252,11 @@ export const join = mutation({
             role: "member",
         });
 
-        return args.workspaceId;
+        return workspace._id;
+
     },
 });
+
 
 export const getInfoById = query({
     args: { id: v.id("workspaces") },
