@@ -54,7 +54,7 @@ const WorkspaceAvatarIcon = ({ className }: { className?: string }) => (
 export const WorkspaceSwitcher = () => {
     const router = useRouter();
     const workspaceId = useWorkspaceId();
-    const [_open, setOpen] = useCreateWorkspaceModal();
+    const [, setOpen] = useCreateWorkspaceModal();
 
     const [isSwitching, setIsSwitching] = useState(false);
 
