@@ -10,8 +10,8 @@ import { IconType } from "react-icons"
 const siderbarItemVariants = cva("flex items-center gap-1.5 justify-start font-normal h-7 px-[18px] text-sm overflow-hidden", {
     variants: {
         variant: {
-            default: "text-[#f9edff]",
-            active: "text-[#481349] bg-white/90 hover:bg-white/90",
+            default: "text-[#f9edff] hover:bg-white/20",
+            active: "text-white bg-[#1164A3] hover:bg-[#1164A3]/90",
         }
     },
     defaultVariants: {
