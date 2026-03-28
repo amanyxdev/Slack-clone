@@ -1,43 +1,57 @@
-# Slack Clone – Real-Time Collaboration App
+# Real-Time Workspace Collaboration App (Slack Clone)
 
-A modern Slack-style collaboration platform built with **Next.js**, **Convex**, **Convex Auth**, and **shadcn/ui**.  
-This project focuses on building scalable workspace-based communication features with authentication and real-time UI updates.
+A modern Slack-style collaboration platform built using **Next.js**, **Convex**, **Convex Auth**, and **shadcn/ui**.
+
+This project demonstrates workspace-based collaboration features including authentication, workspace creation, and member invitations with a scalable frontend architecture.
+
+---
 
 ## 🚀 Features
 
 - Secure authentication using Convex Auth
 - Create and manage workspaces
-- Invite members to join workspaces
-- Channel-based communication structure
-- Real-time UI updates
-- Responsive modern interface using shadcn/ui
+- Invite members to workspaces
+- Workspace switching support
+- Channel-style collaboration layout
+- Responsive modern UI using shadcn/ui
 - Built with Next.js App Router architecture
+- Real-time backend integration using Convex
+
+---
 
 ## 🧰 Tech Stack
 
-Frontend:
+### Frontend
 - Next.js (App Router)
 - React.js
-- shadcn/ui
 - Tailwind CSS
+- shadcn/ui
 
-Backend:
+### Backend
 - Convex Database
 - Convex Auth
 
-Other Tools:
-- TypeScript (if added later)
+### Tools
 - Git & GitHub
 - Vercel (recommended deployment)
 
+---
+
 ## 📸 Screenshots
 
-_Add screenshots here after deployment_
-
-Example:
-
+### Login Page
 ![Login Screen](./screenshots/login.png)
-![Workspace UI](./screenshots/workspace.png)
+
+### Workspace Home
+![Workspace UI](./screenshots/home.png)
+
+### Invite Members
+![Invite Members](./screenshots/invite.png)
+
+### Invite Modal
+![Invite Modal](./screenshots/invite-modla.png)
+
+---
 
 ## ⚙️ Installation
 
