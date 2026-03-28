@@ -59,7 +59,7 @@ const Editor = ({
         editorProps: {
             attributes: {
                 class:
-                    "prose prose-sm max-w-none focus:outline-none px-4 py-3 min-h-[80px]",
+                    "prose prose-sm max-w-none focus:outline-none px-3 py-3 min-h-[80px] max-h-[220px] overflow-y-auto",
             },
         },
         onUpdate: ({ editor }) => {
