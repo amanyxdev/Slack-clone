@@ -130,3 +130,14 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+/* TipTap Editor Placeholder */
+.tiptap p.is-editor-empty:first-child::before,
+.tiptap p.is-empty::before {
+  color: hsl(var(--muted-foreground));
+  opacity: 0.3; /* Extremely light opacity */
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

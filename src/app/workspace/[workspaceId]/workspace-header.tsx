@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { ChevronDown, ListFilter, SquarePen } from "lucide-react"
+import { ChevronDown, ListFilter, SquarePen, Check } from "lucide-react"
 import { Doc } from "../../../../convex/_generated/dataModel"
 import { Hint } from "@/components/hint"
 import { PreferencesModal } from "./preferences-modal"
@@ -33,7 +33,7 @@ export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) =>
                     <DropdownMenuTrigger asChild>
                         <Button
                             variant="transparent"
-                            className="font-semibold text-lg w-auto p-1.5 overflow-hidden"
+                            className="font-semibold text-lg w-auto p-1.5 overflow-hidden hover:bg-white/20"
                             size="sm"
                         >
                             <span className="truncate">
@@ -43,15 +43,12 @@ export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) =>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-63" side="bottom" align="start">
-                        <DropdownMenuItem className="cursor-pointer capitalize ">
-                            <div className="size-9 relative overflow-hidden bg-[#616061] text-white font-semibold text-xl rounded-md flex items-center justify-center mr-2 ">
-                                {workspace.name.charAt(0).toUpperCase()}
-                            </div>
-                            <div className="flex flex-col items-start">
+                        <DropdownMenuItem className="cursor-pointer capitalize justify-between">
+                            <div className="flex flex-col items-start gap-1">
                                 <p className="font-bold">{workspace.name}</p>
-                                <p className="text-xs text-muted-foreground">Active workspaces</p>
-
+                                <p className="text-xs text-muted-foreground">Active workspace</p>
                             </div>
+                            <Check className="size-4 text-muted-foreground" />
                         </DropdownMenuItem>
                         {isAdmin && (
                             <>
@@ -77,15 +74,15 @@ export const WorkspaceHeader = ({ workspace, isAdmin }: WorkspaceHeaderProps) =>
                 </DropdownMenu>
                 <div className="flex items-center gap-0.5">
                     <Hint label="fliter" side="bottom">
-                        <Button variant="transparent" size="iconSm">
-                            <ListFilter className="size-4" />
+                        <Button variant="transparent" size="iconSm" className="hover:bg-white/20">
+                            <ListFilter className="size-4 text-white" />
                         </Button>
 
                     </Hint>
                     <Hint label="New message" side="bottom">
 
-                        <Button variant="transparent" size="iconSm">
-                            <SquarePen className="size-4" />
+                        <Button variant="transparent" size="iconSm" className="hover:bg-white/20">
+                            <SquarePen className="size-4 text-white" />
                         </Button>
 
                     </Hint>
